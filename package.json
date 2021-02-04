@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/river9028/typechain.git",
   "author": "DESKTOP-NQTKL8R\\river k <river9028@gmail.com>",
-  "license": "MIT"
+	"license": "MIT",
+	"scripts": {
+		"start": "node index.js",
+		"prestart": "tsc"
+	}
 }
