@@ -23,10 +23,23 @@ const genesisBlock: Block = new Block(0, "2020202020202", "", "Hello", 123456);
 
 let blockChain: Block[] = [genesisBlock];
 
-const getBlockChain = () : Block[] => blockChain;
+const getBlockChain = (): Block[] => blockChain;
 
-const getLatestBlock = () : Block => blockChain[blockChain.length - 1];
+const getLatestBlock = (): Block => blockChain[blockChain.length - 1];
 
-const getNewTimestamp = () : number => Math.round(new Date().getTime() / 1000);
+const getNewTimestamp = (): number => Math.round(new Date().getTime() / 1000);
+
+const createNewBlock = (data: string): Block => {
+	const previousBlock: Block = getLatestBlock();
+	const newIndex: number = previousBlock.index + 1;
+	const newTimeStamp : number = getNewTimestamp();
+	const newHash : string = Block.calculateBlockHash(newIndex, previousBlock.hash, newTimeStamp, data);
+
+	const newBlock: Block = new Block(newIndex, newHash, previousBlock.hash, data, newTimeStamp);
+	
+	return newBlock;
+};
+
+console.log(createNewBlock("hello"), createNewBlock("bye bye"));
 
 export { };
